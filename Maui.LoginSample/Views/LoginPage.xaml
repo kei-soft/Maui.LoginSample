@@ -1,0 +1,192 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="Maui.LoginSample.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:viewModels="clr-namespace:Maui.LoginSample.ViewModels">
+
+    <ContentPage.BindingContext>
+        <viewModels:LoginPageModel />
+    </ContentPage.BindingContext>
+    <Grid>
+        <VerticalStackLayout>
+            <Image
+                x:Name="mainImage"
+                Grid.Row="0"
+                Margin="30,30"
+                HeightRequest="200"
+                HorizontalOptions="Center"
+                Source="main.png" />
+
+            <StackLayout
+                Grid.Row="1"
+                Margin="15"
+                Orientation="Vertical"
+                VerticalOptions="EndAndExpand">
+                <Border
+                    Margin="5"
+                    BackgroundColor="White"
+                    StrokeThickness="1">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10, 10, 10, 10" />
+                    </Border.StrokeShape>
+                    <StackLayout Margin="30,20,30,20" Orientation="Vertical">
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            Text="아이디"
+                            TextColor="#024B89"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+                        <StackLayout BackgroundColor="White" Orientation="Horizontal">
+                            <Frame
+                                Padding="5,0"
+                                BackgroundColor="White"
+                                BorderColor="Gray"
+                                CornerRadius="3"
+                                HasShadow="False"
+                                HeightRequest="40"
+                                HorizontalOptions="FillAndExpand">
+                                <Entry
+                                    x:Name="idEntry"
+                                    BackgroundColor="White"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    Placeholder="아이디를 입력하세요"
+                                    PlaceholderColor="LightGray"
+                                    Text="{Binding LoginInfo.LoginId}"
+                                    TextColor="Black"
+                                    VerticalOptions="FillAndExpand" />
+                            </Frame>
+                        </StackLayout>
+                        <BoxView
+                            BackgroundColor="White"
+                            HeightRequest="10"
+                            Color="White" />
+                        <Label
+                            FontSize="14"
+                            HorizontalOptions="Start"
+                            Text="비밀번호"
+                            TextColor="#024B89"
+                            VerticalOptions="Center"
+                            VerticalTextAlignment="Center" />
+
+                        <StackLayout BackgroundColor="White" Orientation="Horizontal">
+                            <Frame
+                                Padding="5,0"
+                                BackgroundColor="White"
+                                BorderColor="Gray"
+                                CornerRadius="3"
+                                HasShadow="False"
+                                HeightRequest="40"
+                                HorizontalOptions="FillAndExpand">
+                                <Entry
+                                    x:Name="pwdEntry"
+                                    BackgroundColor="White"
+                                    FontSize="13"
+                                    HorizontalOptions="FillAndExpand"
+                                    IsPassword="True"
+                                    Keyboard="Text"
+                                    Placeholder="비밀번호"
+                                    PlaceholderColor="LightGray"
+                                    Text="{Binding LoginInfo.LoginPw}"
+                                    TextColor="Black"
+                                    VerticalOptions="FillAndExpand" />
+                            </Frame>
+                        </StackLayout>
+
+                        <Grid Margin="5" ColumnDefinitions="3*,2*,3*,2*">
+                            <Label
+                                Grid.Column="0"
+                                FontSize="12"
+                                HorizontalTextAlignment="End"
+                                Text="아이디 저장"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Switch
+                                Grid.Column="1"
+                                IsToggled="{Binding IsSaveID}"
+                                OnColor="Black"
+                                ThumbColor="#054988" />
+                            <Label
+                                Grid.Column="2"
+                                FontSize="12"
+                                HorizontalTextAlignment="End"
+                                Text="비밀번호 저장"
+                                TextColor="Black"
+                                VerticalOptions="Center" />
+                            <Switch
+                                Grid.Column="3"
+                                IsToggled="{Binding IsSavePW}"
+                                OnColor="Black"
+                                ThumbColor="#054988" />
+
+                        </Grid>
+
+                        <StackLayout>
+                            <Button
+                                Margin="10"
+                                BackgroundColor="#024B89"
+                                Command="{Binding LoginCommand}"
+                                CornerRadius="10"
+                                HeightRequest="50"
+                                Text="로그인"
+                                TextColor="#ffffff">
+                                <Button.FontSize>
+                                    <OnPlatform x:TypeArguments="x:Double">
+                                        <On Platform="iOS" Value="24" />
+                                        <On Platform="Android" Value="20" />
+                                    </OnPlatform>
+                                </Button.FontSize>
+                            </Button>
+                        </StackLayout>
+
+                        <Grid
+                            Margin="0,0,0,0"
+                            ColumnDefinitions="*,*"
+                            VerticalOptions="Start">
+                            <StackLayout Grid.Column="0">
+                                <Button
+                                    BackgroundColor="#ffffff"
+                                    Command="{Binding IdPwSearchCommand}"
+                                    CornerRadius="10"
+                                    HeightRequest="50"
+                                    Text="아이디/비번찿기"
+                                    TextColor="Black">
+                                    <Button.FontSize>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="iOS" Value="18" />
+                                            <On Platform="Android" Value="14" />
+                                        </OnPlatform>
+                                    </Button.FontSize>
+                                </Button>
+                            </StackLayout>
+                            <StackLayout Grid.Column="1" HorizontalOptions="EndAndExpand">
+                                <Button
+                                    BackgroundColor="#ffffff"
+                                    Command="{Binding MemberJoinCommand}"
+                                    CornerRadius="10"
+                                    HeightRequest="50"
+                                    Text="회원가입"
+                                    TextColor="Black">
+                                    <Button.FontSize>
+                                        <OnPlatform x:TypeArguments="x:Double">
+                                            <On Platform="iOS" Value="18" />
+                                            <On Platform="Android" Value="14" />
+                                        </OnPlatform>
+                                    </Button.FontSize>
+                                </Button>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </Border>
+            </StackLayout>
+        </VerticalStackLayout>
+        <ActivityIndicator
+            IsRunning="True"
+            IsVisible="{Binding IsBusy}"
+            WidthRequest="60"
+            Color="Gray" />
+    </Grid>
+
+</ContentPage>
